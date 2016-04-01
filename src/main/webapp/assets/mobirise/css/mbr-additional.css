@@ -1,0 +1,111 @@
+@import url(https://fonts.googleapis.com/css?family=Titillium+Web:400,300,700);
+@import url(https://fonts.googleapis.com/css?family=Ubuntu:400,300,700);
+
+
+
+#header1-8 H1 {
+  font-size: 36px;
+  color: #41a85f;
+}
+#header1-8 .btn {
+  font-family: 'Titillium Web', sans-serif;
+  font-size: 24px;
+}
+#header1-8 P {
+  color: #7ac673;
+}
+#menu-9 .mbr-brand__name {
+  font-size: 16px;
+}
+#menu-9.mbr-navbar--stuck .mbr-navbar__section {
+  background: #1abc9c;
+}
+#menu-9 .mbr-brand__name a {
+  font-family: 'Titillium Web', sans-serif;
+  font-size: 30px;
+}
+#menu-9 .mbr-navbar__items a {
+  font-size: 24px;
+  font-family: 'Ubuntu', sans-serif;
+}
+
+
+#menu-13 .mbr-brand__name {
+  font-size: 16px;
+}
+#menu-13.mbr-navbar--stuck .mbr-navbar__section {
+  background: #1abc9c;
+}
+#menu-13 .mbr-brand__name a {
+  font-family: 'Titillium Web', sans-serif;
+  font-size: 30px;
+}
+#menu-13 .mbr-navbar__items a {
+  font-size: 24px;
+  font-family: 'Ubuntu', sans-serif;
+}
+#contacts1-15 STRONG {
+  color: #41a85f;
+}
+#contacts1-15 B {
+  color: #41a85f;
+}
+#contacts1-15 P {
+  color: #41a85f;
+}
+
+
+#menu-17 .mbr-brand__name {
+  font-size: 16px;
+}
+#menu-17.mbr-navbar--stuck .mbr-navbar__section {
+  background: #1abc9c;
+}
+#menu-17 .mbr-brand__name a {
+  font-family: 'Titillium Web', sans-serif;
+  font-size: 30px;
+}
+#menu-17 .mbr-navbar__items a {
+  font-size: 24px;
+  font-family: 'Ubuntu', sans-serif;
+}
+#contacts1-19 STRONG {
+  color: #41a85f;
+}
+#contacts1-19 B {
+  color: #41a85f;
+}
+#contacts1-19 P {
+  color: #41a85f;
+}
+
+
+#header1-0 H1 {
+  font-size: 32px;
+}
+#header1-0 P {
+  font-size: 24px;
+}
+#menu-3 .mbr-brand__name {
+  font-size: 16px;
+}
+#menu-3.mbr-navbar--stuck .mbr-navbar__section {
+  background: #1abc9c;
+}
+#menu-3 .mbr-brand__name a {
+  font-family: 'Titillium Web', sans-serif;
+  font-size: 30px;
+}
+#menu-3 .mbr-navbar__items a {
+  font-size: 24px;
+  font-family: 'Ubuntu', sans-serif;
+}
+#contacts1-7 STRONG {
+  color: #41a85f;
+}
+#contacts1-7 B {
+  color: #41a85f;
+}
+#contacts1-7 P {
+  color: #41a85f;
+}
