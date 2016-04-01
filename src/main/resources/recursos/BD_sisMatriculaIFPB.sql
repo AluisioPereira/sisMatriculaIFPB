@@ -22,4 +22,17 @@ CREATE TABLE MATRICULA(
         FOREIGN KEY (matricula) REFERENCES ALUNO (matricula),
         PRIMARY KEY(matricula)
 );
+-- gatilho gera mat
+CREATE FUNCTION GeraMat() RETURNS TRIGGER 
+AS'
+      BEGIN
+                INSERT INTO matricula VALUES (NEW.matricula);
+                RETURN NULL;
+      END '
+LANGUAGE PLPGSQL;
+
+CREATE TRIGGER GeraMatTregger AFTER INSERT 
+ON aluno 
+FOR EACH ROW 
+EXECUTE PROCEDURE GeraMat();
 
