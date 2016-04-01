@@ -23,22 +23,23 @@
         <link href="css/style.css" type="text/css" rel="stylesheet">
         <script language="JavaScript" type="text/javascript" src="js/cpf/validarCPFData.js"></script> 
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link href="css/mensagem/mensagem.css" type="text/css" rel="stylesheet">
     </head>
     <body style="padding: 1% 8% 4% 8%">
 
         <header style="text-align: center">
             <%@ include file="cabecalho.jsp"%>
         </header>
-        <div id="mensagemFrancaco"style="display:none " class="alert alert-warning" role="alert">
-            <span id="messagem">Messagem:</span>
+        <div id="mensagemFrancaco" class="alert alert-warning" role="alert">
+            Operação não foi bem sucessida!
         </div>
-        <div id="mensagemSucesso"style="display:none " class="alert alert-success" role="alert">
-            <span>Messagem:</span>
+        <div id="mensagemSucesso" class="alert alert-success" role="alert">
+            Sucesso na operação!
         </div>
         <div class="page-header">
             <div class="alert alert-info" role="alert">
                 <h4 >NOVA MATRÍCULA: Informações do(a) aluno(a):<br><h6><span style="color:#ff3333">Realize o preenchimento correto de todos os campos!</span></h6><hr></h4>
-                <form class="form-horizontal" name="form1" method="post" action="Control?seek=AlunoCadastrar">
+                <form id="form1"class="form-horizontal" name="form1" method="post" action="Control?seek=AlunoCadastrar">
                     <fieldset>
                         <!-- Text input-->
                         <div class="form-group">
@@ -127,7 +128,7 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="idButao1"></label>
                             <div class="col-md-8">
-                                <button id="idButao1" name="idButao1" class="btn btn-success">Matricular</button>
+                                <button id="idButao1" name="idButao1" class="btn btn-success" onclick="reapareceDivSucesso()" >Matricular</button>
                                 <button id="idButao2" name="idButao2" class="btn btn-danger">Cancelar</button>
                             </div>
                         </div>
@@ -139,11 +140,59 @@
 
             </div>
 
+        </div>
+        <hr>
+        <br>
 
-            <hr>
-            <br>
+        <%@include file="mapaIFPB.jsp" %>
+        <%@ include file="rodape.jsp"%>
+        <script>
+            $(document).ready(function () {
+                $('#datepicker1').datepicker({
+                    pickTime: false,
+                    format: 'dd/mm/yyyy',
+                    language: "pt-BR"
+                });
+            });
 
-            <%@include file="mapaIFPB.jsp" %>
-            <%@ include file="rodape.jsp"%>
-            </body>
-            </html>
+            function processaRequest() {
+                event.preventDefault();
+
+                $('#mensagemFrancaco').hide();
+
+                var dados = $("#form1").serialize();
+
+                var data = dados + "&action=CadastrarUser";
+
+                $.post("cadastro", data, function (responseJson) {                 // Execute Ajax GET request on URL of "someservlet" and execute the following function with Ajax response JSON...
+
+                    var resultado = responseJson.passou;
+                    $('p').addClass("hidden");
+                    $("div").removeClass("has-error");
+
+                    if (resultado === "true") {
+                        $(location).attr('href', 'home');
+                    } else {
+                        $.each(responseJson, function (key, value) {
+
+                            if (key === "dataNascimento") {
+                                $("#" + key).parent("div").next("p").html(value).removeClass("hidden");
+                            } else if (key === "emailJaExiste") {
+                                $('#alertaErroLogin').show(250).text(value);
+                            } else {
+                                $("#" + key).next("p").html(value).removeClass("hidden");
+                            }
+
+                            $("#" + key).parent("div").addClass("has-error");
+
+                        });
+                    }
+                });
+
+            }
+
+            $('#btnEnviar').click(processaRequest);
+
+        </script>
+    </body>
+</html>

@@ -29,21 +29,19 @@ public class AlunoCadastrar implements Action {
     @Override
     public void execute(HttpServletRequest req, HttpServletResponse resp) {
         try {
-
             PrintWriter out = resp.getWriter();
             out.print("passou para Action");
             Aluno aluno = montarAluno(req);
             out.println(aluno.toString());
             CadastrarAlunoBo cadastrarAlunoBo = new CadastrarAlunoBo();
             Map<String, String> result = cadastrarAlunoBo.cadastrarAluno(aluno);
-
             out.print("cadastrou " + result.get("passou"));
             req.setAttribute("result", result);
             out.println(result.toString());
             if (result.get("passou").equalsIgnoreCase("true")) {
-                req.getRequestDispatcher("cadastrado.jsp");
+                req.getRequestDispatcher("Cadastrado.jsp");
             } else {
-                req.getRequestDispatcher("index.html");
+                req.getRequestDispatcher("matricularAluno.jsp");
             }
 
         } catch (IOException ex) {

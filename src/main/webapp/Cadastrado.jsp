@@ -9,9 +9,16 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>SucessoFacaco</title>
+        <script language="JavaScript" type="text/javascript" src="js/Mensagem/mensagem.js"></script>
+        <link href="css/mensagem/mensagem.css" type="text/css" rel="stylesheet">
     </head>
     <body>
-        <h1 style="color: #41a85f" > Aluno cadastrado com sucesso!</h1>
+        <div id="mensagemFrancaco" class="alert alert-warning" role="alert">
+            Operação não foi bem sucessida!
+        </div>
+        <div id="mensagemSucesso" class="alert alert-success" role="alert">
+            Sucesso na operação!
+        </div>
     </body> 
 </html>
