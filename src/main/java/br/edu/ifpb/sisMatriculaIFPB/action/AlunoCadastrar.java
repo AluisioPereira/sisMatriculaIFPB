@@ -66,7 +66,7 @@ public class AlunoCadastrar implements Action {
         }
 
         String reservista = req.getParameter("reservista");
-        return new AlunoBeilder(nome, sobreNome, dataNacimento, nacionalidade, rg, cpf).comDocMilitar(reservista).comSexo(sexo).BeilderAluno();
+        return new AlunoBeilder(nome, sobreNome, dataNacimento, nacionalidade, rg, cpf).comSexo(sexo).comDocMilitar(reservista).BeilderAluno();
 
     }
 
