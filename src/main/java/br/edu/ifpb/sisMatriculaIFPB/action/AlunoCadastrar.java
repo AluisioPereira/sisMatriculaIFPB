@@ -36,9 +36,9 @@ public class AlunoCadastrar implements Action {
             Map<String, String> result = cadastrarAlunoBo.cadastrarAluno(aluno);
             req.setAttribute("result", result);
             if (result.get("passou").equalsIgnoreCase("true")) {
-                req.getRequestDispatcher("Cadastrado.jsp");
+                req.getRequestDispatcher("AlertSucesso.jsp").forward(req, resp);
             } else {
-                req.getRequestDispatcher("matricularAluno.jsp");
+                req.getRequestDispatcher("Erro.jsp").forward(req, resp);
             }
         }catch(Exception ex){
              Logger.getLogger(Control.class.getName()).log(Level.SEVERE, null, ex);
