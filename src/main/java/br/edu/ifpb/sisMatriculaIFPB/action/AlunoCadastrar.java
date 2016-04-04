@@ -9,12 +9,8 @@ import br.edu.ifpb.sisMatriculaIFPB.control.Control;
 import br.edu.ifpb.sisMatriculaIFPB.entidades.Aluno;
 import br.edu.ifpb.sisMatriculaIFPB.entidades.AlunoBeilder;
 import br.edu.ifpb.sisMatriculaIFPB.model.CadastrarAlunoBo;
-import br.edu.ifpb.sisMatriculaIFPB.model.ValidarAluno;
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.time.temporal.ChronoUnit;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -36,9 +32,9 @@ public class AlunoCadastrar implements Action {
             Map<String, String> result = cadastrarAlunoBo.cadastrarAluno(aluno);
             req.setAttribute("result", result);
             if (result.get("passou").equalsIgnoreCase("true")) {
-                req.getRequestDispatcher("Cadastrado.jsp");
+                req.getRequestDispatcher("AlertSucesso.jsp").forward(req, resp);
             } else {
-                req.getRequestDispatcher("matricularAluno.jsp");
+                req.getRequestDispatcher("Erro.jsp").forward(req, resp);
             }
         }catch(Exception ex){
              Logger.getLogger(Control.class.getName()).log(Level.SEVERE, null, ex);

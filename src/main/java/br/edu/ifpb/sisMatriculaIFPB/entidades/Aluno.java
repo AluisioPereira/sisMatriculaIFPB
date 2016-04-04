@@ -8,7 +8,6 @@ import java.time.LocalDate;
  */
    public final class Aluno {
 
-    private int id;
     private final String nome;
     private final String sobreNome;
     private final LocalDate dataNascimento;
@@ -18,8 +17,8 @@ import java.time.LocalDate;
     private final String docMilitar;
     private final String sexo;
 
-    protected Aluno(int id, String nome, String sobreNome, LocalDate dataNascimento,String sexo, String nacionalidade, String rg, String cpf, String docMilitar) {
-        this.id = id;
+    protected Aluno( String nome, String sobreNome, LocalDate dataNascimento,String sexo, String nacionalidade, String rg, String cpf, String docMilitar) {
+        
         this.nome = nome;
         this.sobreNome = sobreNome;
         this.dataNascimento = dataNascimento;
@@ -36,10 +35,6 @@ import java.time.LocalDate;
     }
 
    
-
-    public int getId() {
-        return id;
-    }
 
     public String getNome() {
         return nome;
@@ -69,9 +64,6 @@ import java.time.LocalDate;
         return sexo;
     }
 
-    @Override
-    public String toString() {
-        return "Aluno{" + "id=" + id + ", nome=" + nome + ", sobreNome=" + sobreNome + ", dataNascimento=" + dataNascimento + ", nacionalidade=" + nacionalidade + ", rg=" + rg + ", cpf=" + cpf + ", docMilitar=" + docMilitar + ", sexo=" + sexo + '}';
-    }
+   
 
 }

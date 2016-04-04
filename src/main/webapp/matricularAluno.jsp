@@ -32,12 +32,7 @@
         <header style="text-align: center">
             <%@ include file="cabecalho.jsp"%>
         </header>
-        <div id="mensagemFrancaco" class="alert alert-warning" role="alert">
-            Operação não foi bem sucessida!
-        </div>
-        <div id="mensagemSucesso" class="alert alert-success" role="alert">
-            Sucesso na operação!
-        </div>
+       
         <div class="page-header">
             <div class="alert alert-info" role="alert">
                 <h4 >NOVA MATRÍCULA: Informações do(a) aluno(a):<br><h6><span style="color:#ff3333">Realize o preenchimento correto de todos os campos!</span></h6><hr></h4>

@@ -9,17 +9,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import br.edu.ifpb.sisMatriculaIFPB.conexao.Conexao;
 import br.edu.ifpb.sisMatriculaIFPB.entidades.Aluno;
-import br.edu.ifpb.sisMatriculaIFPB.entidades.AlunoBeilder;
 import java.net.URISyntaxException;
-import java.sql.CallableStatement;
 import java.sql.Date;
 import java.sql.ResultSet;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  *
@@ -50,8 +42,8 @@ public class AlunoDao implements AlunoDaoIf {
             stat.setString(7, aluno.getDocMilitar());
             stat.setString(8, aluno.getSexo());
             if (stat.executeUpdate() > 0) {
-                
-                result =true;
+
+                result = true;
             }
 
         } catch (SQLException | ClassNotFoundException | IOException | URISyntaxException ex) {
@@ -66,5 +58,54 @@ public class AlunoDao implements AlunoDaoIf {
 
         }
         return result;
+    }
+
+    @Override
+    public boolean buscaPorCPF(String cpf) {
+
+        String consulta = "SELECT cpf FROM aluno WHERE cpf = '" + cpf + "'";
+        if (buscaDocExitente(consulta)) {
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+
+    @Override
+    public boolean buscaPorDocMilitar(String docMilitar) {
+         String consulta = "SELECT docmilitar FROM aluno WHERE docmilitar = '" + docMilitar + "'";
+        if (buscaDocExitente(consulta)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * método privado utilizado para verificar de se determinado documento esta
+     * cadastrado
+     *
+     * @param sql
+     * @return true se na base de dados
+     */
+    private boolean buscaDocExitente(String sql) {
+        PreparedStatement pst;
+
+        try {
+            conn = new Conexao();
+            pst = conn.getConnection().prepareStatement(sql);
+
+            ResultSet rs = pst.executeQuery();
+            if (rs.next()) {
+                return true;
+            }
+
+            conn.closeAll(pst);
+        } catch (SQLException | IOException | ClassNotFoundException | URISyntaxException ex) {
+            Logger.getLogger(AlunoDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return false;
     }
 }
