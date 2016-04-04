@@ -4,9 +4,19 @@
     Author     : José
 --%>
 
+
+<%@page import="java.util.Collection"%>
+<%@page import="java.util.Collections"%>
+<%@page import="java.util.Map"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+
+<%>  pageContext.setAttribute(request.getAttribute("result"));
+    Map a = pageContext.getAttribute("result");
+    a.remove("passou"); 
+     
+                <%>    
+        
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
@@ -16,7 +26,10 @@
         <link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css" type="text/css">
 
     </head>
+    
     <body>
+       
+        
         
   <div class="modal-dialog">
 
@@ -27,7 +40,7 @@
     <div class="modal-content">
       <div class="modal-header align-center">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title text-danger">Errro ao cadastrar</h4>
+        <h4 class="modal-title text-danger"> Erro: <%=a.values()%> </h4>
         
       </div>
       <div class="modal-body align-center">
@@ -41,4 +54,4 @@
   </div>
 
     </body>
-</html>
+
