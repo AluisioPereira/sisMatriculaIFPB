@@ -25,6 +25,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="css/mensagem/mensagem.css" type="text/css" rel="stylesheet">
     </head>
+
+
     <body style="padding: 1% 8% 4% 8%">
 
         <header style="text-align: center">
@@ -45,25 +47,14 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="Nome" >Nome:</label>  
                             <div class="col-md-4">
-                                <input id="nome" name="Nome" type="text"  pattern="[A-Za-z]+$" placeholder="Ex.: João" class="form-control input-md">
+                                <input id="nome" name="Nome" type="text"  pattern="[A-Za-z]+$" placeholder="Ex.: João" class="form-control input-md" required>
 
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="sobrenome">Sobrenome:</label>  
                             <div class="col-md-4">
-                                <input id="sobrenome" name="sobreNome" type="text"  pattern="[A-Za-z]+" placeholder="Ex.: Silva" class="form-control input-md">
-                            </div>
-                        </div>
-
-                        <!-- Select Basic -->
-                        <div class="form-group">
-                            <label class="col-md-4 control-label" for="sexo">Sexo:</label>
-                            <div class="col-md-3">
-                                <select id="sexo" name="sexo" class="form-control">
-                                    <option value="masculino">masculino</option>
-                                    <option value="feminino">feminino</option>
-                                </select>
+                                <input id="sobrenome" name="sobreNome" type="text"  pattern="[A-Za-z]+" placeholder="Ex.: Silva" class="form-control input-md" required>
                             </div>
                         </div>
 
@@ -71,10 +62,46 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="dataNascimento">Data nascimento:</label>  
                             <div class="col-md-3">
-                                <input id="data" name="dataNascimento" type="text" placeholder="Ex.:01/01/1991" class="form-control input-md" onkeypress="MascaraData(form1.data)"  
-                                       maxlength="10" onblur= "ValidaData(form1.data);">
+                                <input id="data" name="dataNascimento" type="date" placeholder="Ex.:01/01/1991" class="form-control input-md" required>
+                                <!--onkeypress="MascaraData(form1.data)" maxlength="10" onblur= "ValidaData(form1.data);" -->
                             </div>
                         </div>
+
+                        <script language="JavaScript" type="text/javascript">
+                            function habilitaResevista() {
+                                var op = document.getElementById("sexo").value;
+                                if (op == "feminino")
+                                {
+                                    if (!document.getElementById('res').disabled)
+                                        document.getElementById('res').disabled = true;
+                                } else if (op == "masculino") {
+
+//                                    var dataForm = document.form1.getElementById('data').value;
+//                                    var hoje = new Date();
+//                                    var dataInf = new Date(dataForm);
+//                                    var ano = dataInf.getYear();
+//                                    var anoAtual = hoje.getYear();
+//                                    var idade = anoAtual - ano;
+//                                    if (idade >= 18) {
+//                                        if (document.getElementById('res').disabled)
+//                                            document.getElementById('res').disabled = false;
+//                                    }
+                                    if (document.getElementById('res').disabled)
+                                        document.getElementById('res').disabled = false;
+                                }
+                            }
+                        </script>
+
+                        <!-- Select Basic -->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="sexo">Sexo:</label>
+                            <div class="col-md-3">
+                                <select id="sexo" name="sexo" class="form-control" required onchange="habilitaResevista()">
+                                    <option id="f" value="feminino" >Feminino</option>
+                                    <option id="m" value="masculino" >Masculino</option>                                    
+                                </select>
+                            </div>
+                        </div>                        
 
                         <!-- Select Basic -->
                         <div class="form-group">
@@ -102,7 +129,7 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="rg">RG e Órgão emissor:</label>  
                             <div class="col-md-3">
-                                <input id="rg" name="rg" type="text" placeholder="Ex.: 1.333.333/SSP" class="form-control input-md">
+                                <input id="rg" name="rg" type="text" placeholder="Ex.: 1.333.333/SSP" class="form-control input-md" required>
                             </div>
                         </div>
 
@@ -111,16 +138,16 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="cpf">CPF:</label>  
                             <div class="col-md-3">
-                                <input id="cpf" name="cpf" type="text" placeholder="Ex.:111.222.333-44" class="form-control input-md" onblur="ValidarCPF(form1.cpf);" onkeypress="MascaraCPF(form1.cpf);" maxlength="14">
+                                <input id="cpf" name="cpf" type="text" placeholder="Ex.:111.222.333-44" class="form-control input-md" onblur="ValidarCPF(form1.cpf);" onkeypress="MascaraCPF(form1.cpf);" maxlength="14" required>
 
                             </div>
                         </div>
 
                         <!-- Text input-->
-                        <div class="form-group">
+                        <div class="form-group" id="reservistaDiv">
                             <label class="col-md-4 control-label" for="reservista">Reservista: </label>  
                             <div class="col-md-2">
-                                <input id="reservista" name="reservista" type="text" placeholder="Ex.: 425715-S" class="form-control input-md">
+                                <input id="res" name="reservista" type="text" placeholder="Ex.: 425715-S" class="form-control input-md" disabled="true">
                             </div>
                         </div>
 
@@ -129,7 +156,7 @@
                             <label class="col-md-4 control-label" for="idButao1"></label>
                             <div class="col-md-8">
                                 <button id="idButao1" name="idButao1" class="btn btn-success" onclick="reapareceDivSucesso()" >Matricular</button>
-                                <button id="idButao2" name="idButao2" class="btn btn-danger">Cancelar</button>
+                                <button type="reset" id="idButao2" name="idButao2" class="btn btn-danger">Limpar</button>
                             </div>
                         </div>
 
