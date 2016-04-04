@@ -6,7 +6,9 @@
 package br.edu.ifpb.sisMatriculaIFPB.model;
 
 import br.edu.ifpb.sisMatriculaIFPB.entidades.Aluno;
-import br.edu.ifpb.sisMatriculaIFPB.entidades.Sexo;
+import br.edu.ifpb.sisMatriculaIFPB.Enum.Sexo;
+import br.edu.ifpb.sisMatriculaIFPB.dao.AlunoDaoIf;
+import br.edu.ifpb.sisMatriculaIFPB.fabricas.DaoFabrica;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.HashMap;
@@ -40,7 +42,7 @@ public class ValidarAluno {
             resultado.put("dataNascimento ", "data de nascimento");
         }
         if (aluno.getSexo().equalsIgnoreCase(Sexo.MASCULINO.name()) && idade > 17) {
-            if (aluno.getDocMilitar() == null || aluno.getDocMilitar().trim().isEmpty() ) {
+            if (aluno.getDocMilitar() == null || aluno.getDocMilitar().trim().isEmpty()) {
                 resultado.put("docMilitar", "infome o documento militar correto ");
             }
         }
@@ -51,11 +53,19 @@ public class ValidarAluno {
         if (aluno.getSexo().trim().isEmpty()) {
             resultado.put("sexo", "infome o sexo");
         }
+        BuscaPorDocumentos buscaDoc = new BuscaPorDocumentos();
+        if (buscaDoc.buscaPorCPF(aluno.getCpf())) {
+            resultado.put("CPF", "CPF já cadastrado ");
+        }
+        if (buscaDoc.buscaPorDocMilitar(aluno.getDocMilitar())) {
+            resultado.put("docMilitar", "documento militar já cadastrado");
+        }
         if (resultado.isEmpty()) {
             resultado.put("passou", "true");
         } else {
             resultado.put("passou", "false");
         }
+
         return resultado;
     }
 
