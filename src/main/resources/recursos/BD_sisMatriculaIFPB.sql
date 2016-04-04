@@ -1,7 +1,6 @@
-﻿CREATE SEQUENCE serial START 00001;
+CREATE SEQUENCE serial START 10000;
 
 CREATE TABLE ALUNO(
-	id serial,
 	nome VARCHAR(50) NOT NULL,
         SobreNome VARCHAR(50) NOT NULL,
         dataNascimento DATE NOT NULL,
@@ -11,15 +10,13 @@ CREATE TABLE ALUNO(
         sexo VARCHAR(10) NOT NULL,
         docMilitar VARCHAR (13)UNIQUE,
         matricula serial NOT NULL UNIQUE,
-	PRIMARY KEY(id)
-ON DELETE RESTRICT   ON UPDATE CASCADE
-        
+	PRIMARY KEY(matricula)
 
 );
 CREATE TABLE MATRICULA(
 	matricula INTEGER,
         dataMatricula timestamp without time zone DEFAULT CURRENT_TIMESTAMP(0)  NOT NULL ,
-        FOREIGN KEY (matricula) REFERENCES ALUNO (matricula),
+        FOREIGN KEY (matricula) REFERENCES ALUNO (matricula)ON DELETE CASCADE,
         PRIMARY KEY(matricula)
 );
 -- gatilho gera mat

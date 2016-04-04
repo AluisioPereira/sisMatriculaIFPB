@@ -6,11 +6,8 @@
 package br.edu.ifpb.sisMatriculaIFPB.control;
 
 import br.edu.ifpb.sisMatriculaIFPB.action.Action;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.net.URISyntaxException;
-import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -36,8 +33,6 @@ public class Control extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, URISyntaxException {
         response.setContentType("text/html;charset=UTF-8");
-
-       
 
         String nomeDaClasse = "br.edu.ifpb.sisMatriculaIFPB.action." + request.getParameter("seek");
 

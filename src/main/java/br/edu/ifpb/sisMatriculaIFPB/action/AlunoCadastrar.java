@@ -5,6 +5,7 @@
  */
 package br.edu.ifpb.sisMatriculaIFPB.action;
 
+import br.edu.ifpb.sisMatriculaIFPB.control.Control;
 import br.edu.ifpb.sisMatriculaIFPB.entidades.Aluno;
 import br.edu.ifpb.sisMatriculaIFPB.entidades.AlunoBeilder;
 import br.edu.ifpb.sisMatriculaIFPB.model.CadastrarAlunoBo;
@@ -29,23 +30,18 @@ public class AlunoCadastrar implements Action {
     @Override
     public void execute(HttpServletRequest req, HttpServletResponse resp) {
         try {
-            PrintWriter out = resp.getWriter();
-            out.print("passou para Action");
+           
             Aluno aluno = montarAluno(req);
-            out.println(aluno.toString());
             CadastrarAlunoBo cadastrarAlunoBo = new CadastrarAlunoBo();
             Map<String, String> result = cadastrarAlunoBo.cadastrarAluno(aluno);
-            out.print("cadastrou " + result.get("passou"));
             req.setAttribute("result", result);
-            out.println(result.toString());
             if (result.get("passou").equalsIgnoreCase("true")) {
                 req.getRequestDispatcher("Cadastrado.jsp");
             } else {
                 req.getRequestDispatcher("matricularAluno.jsp");
             }
-
-        } catch (IOException ex) {
-            Logger.getLogger(AlunoCadastrar.class.getName()).log(Level.SEVERE, null, ex);
+        }catch(Exception ex){
+             Logger.getLogger(Control.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
@@ -61,11 +57,11 @@ public class AlunoCadastrar implements Action {
         String nacionalidade = req.getParameter("nacionalidade");
         String rg = req.getParameter("rg");
         String cpf = req.getParameter("cpf");
+         String reservista = req.getParameter("reservista");
         if (data != null && data != "") {
             dataNacimento = LocalDate.parse(data, dtf);
         }
 
-        String reservista = req.getParameter("reservista");
         return new AlunoBeilder(nome, sobreNome, dataNacimento, nacionalidade, rg, cpf).comSexo(sexo).comDocMilitar(reservista).BeilderAluno();
 
     }
