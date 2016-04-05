@@ -68,6 +68,8 @@
                                     if ((hoje.getFullYear() - dataInf.getFullYear()) >= 18) {
                                         if (document.getElementById('res').disabled)
                                             document.getElementById('res').disabled = false;
+                                            document.getElementById('res').required = true;
+                                        
                                     }else{
                                         document.getElementById('res').disabled = true;
                                     }
@@ -79,6 +81,7 @@
                             function validarData(){
                                 var list = [];
                                 if (document.getElementById('data').value.length < 10){
+                                    document.getElementById('idButao1').disabled=true;
                                     alert("Formato inválido");
                                     document.getElementById('data').focus();
                                     return;
@@ -88,16 +91,22 @@
                                 var date = new Date();
                                 
                                 if (list[0] > 31 || list[0] < 1){
+                                    document.getElementById('idButao1').disabled=true;
                                     alert("Verifique se o dia está correto");
                                     return;
                                 }
                                 if (list[1] > 12 || list[1] < 1){
+                                    document.getElementById('idButao1').disabled=true;
                                     alert("Verifique se o mês está correto");
                                     return;
                                 }
                                 if (date.getFullYear() - list[2] < 12 || date.getFullYear() - list[2] >= 70 ){
+                                    document.getElementById('idButao1').disabled=true;
                                     alert("Verifique se o ano está correto"); 
+                                }else{
+                                    document.getElementById('idButao1').disabled=false;
                                 }
+                                
                                 
                             }
                             

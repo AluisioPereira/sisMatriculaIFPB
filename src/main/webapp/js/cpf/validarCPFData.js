@@ -78,8 +78,13 @@ function ValidarCPF(Objcpf){
         soma2=(((soma2+(2*soma1))*10)%11);
 
         var digitoGerado=(soma1*10)+soma2;
-        if(digitoGerado!=digitoDigitado)        
-                alert('CPF Invalido!');         
+        if(digitoGerado!=digitoDigitado){
+            document.getElementById('idButao1').disabled=true;
+            alert('CPF Invalido!'); 
+        }else{
+            document.getElementById('idButao1').disabled=false;
+        }      
+                        
 }
 
 //valida numero inteiro com mascara
