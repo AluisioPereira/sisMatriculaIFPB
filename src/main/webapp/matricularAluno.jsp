@@ -40,14 +40,14 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="Nome" >Nome:</label>  
                             <div class="col-md-4">
-                                <input id="nome" name="Nome" type="text" pattern="[A-Za-z]+$" placeholder="Ex.: João" class="form-control input-md" required autofocus >
+                                <input id="nome" name="Nome" type="text" pattern="[(A-Za-zÀ-ú)]+" placeholder="Ex.: João" class="form-control input-md" required autofocus >
 
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="sobrenome">Sobrenome:</label>  
                             <div class="col-md-4">
-                                <input id="sobrenome" name="sobreNome" type="text"  pattern="[A-Za-z]+" placeholder="Ex.: Silva" class="form-control input-md" required>
+                                <input id="sobrenome" name="sobreNome" type="text"  pattern="[(A-Za-zÀ-ú)]+" placeholder="Ex.: Silva" class="form-control input-md" required>
                             </div>
                         </div>
 
